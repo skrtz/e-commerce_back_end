@@ -30,7 +30,6 @@ router.get('/:id', async (req, res) => {
       res.status(404).json({ message: `¯\_(ツ)_/¯` });
       return;
     }
-    res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
   }
