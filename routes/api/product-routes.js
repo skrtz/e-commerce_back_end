@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { json } = require('sequelize/types');
+const { json } = require('sequelize');
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
   try {
-    const productData = await Product.findAll({ inclue: [{ model: Category }, { model: Tag }] });
+    const productData = await Product.findAll({ include: [{ model: Category }, { model: Tag }]});
     if (!productData) {
       res.status(404).json({ message: 'not data found my dude.' });
       return;
@@ -30,6 +30,7 @@ router.get('/:id', async (req, res) => {
       res.status(404).json({ message: `¯\_(ツ)_/¯` });
       return;
     }
+    res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
   }

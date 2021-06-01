@@ -27,6 +27,7 @@ router.get('/:id', async (req, res) => {
     if (!categoryData) {
       res.status(404).json({ message: 'no data!!! >:O' })
     }
+    res.status(200).json(categoryData);
   }
   catch (err) {
     res.status(500).json(err)
